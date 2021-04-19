@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+        </div>
+        {% if user.games|length > 0 %}
+            <legend class="border-bottom mb-4">Games</legend>
+            <ul>
+                {% for game in user.games %}
+                    <li><a href="{{ url_for('quizzes.details', id=game.quiz.id) }}">{{ game.quiz.name }}</a> ({{ game.points }}/{{ game.max }})</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if user.created_quizzes|length > 0 %}
+            <legend class="border-bottom mb-4">Created quizzes</legend>
+            <ul>
+                {% for quiz in user.created_quizzes %}
+                    <li><a href="{{ url_for('quizzes.details', id=quiz.id) }}">{{ quiz.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if current_user.id == user.id %}
+            <a href="{{ url_for('users.account_edit') }}" class="btn btn-secondary btn-sm m-1">Edit</a>
+        {% endif %}
+    </div>
+{% endblock content %}

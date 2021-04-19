@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Latest quizzes</h1>
+    {% for quiz in quizzes.items %}
+        <div class="media content-section">
+            <div class="media-body">
+                <h2 class="quiz-title">{{ quiz.name }}</h2>
+                <div>
+                    <legend class="border-bottom mb-4">Description</legend>
+                    <div class="section-container">
+                        <p>{{ quiz.description }}</p>               
+                    </div>
+                </div> 
+            </div>
+            <div>
+                <span>Author:<a class="mr-2" href="{{ url_for('users.account', id=quiz.author.id) }}"> {{ quiz.author.username }}</a></span>
+                {% if quiz.questions|length > 0 %}
+                    <a href="{{ url_for('games.new_game', quiz_id=quiz.id) }}" class="btn btn-primary btn-sm m-1">Play</a>
+                {% else %}
+                    <p>Ten quiz nie ma jeszcze pytań</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="pagination">
+        {% for page_num in quizzes.iter_pages() %}
+            {% if page_num %}
+                {% if quizzes.page == page_num %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('main.index', page=page_num) }}">{{page_num}}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('main.index', page=page_num) }}">{{page_num}}</a>
+                {% endif %}
+            {% else %}
+                |
+            {% endif %}
+        {% endfor %}
+    </div>
+            
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% block content %}         
+    <div class="media content-section">
+        <div class="media-body">
+            <h2 class="quiz-title">{{ quiz.name }}</h2>
+            <div>
+                <legend class="border-bottom mb-4">Description</legend>
+                <div class="section-container">
+                    <p>{{ quiz.description }}</p>               
+                </div>
+                {% if quiz.author == current_user %}
+                {% if quiz.questions|length > 0 %}
+                    <legend class="border-bottom mb-4">Questions</legend>
+                    <ul>
+                        {% for question in quiz.questions %}
+                            <li>
+                                <div class="section-container">                                        
+                                    <h5>{{question.content}}</h5>                   
+                                    <ul>
+                                        {% for ans in question.answers %}
+                                            <li>{{ ans }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <p><b>Answer: {{ question.answers[question.correct - 1] }}</b></p>
+                                    <a href="{{ url_for('questions.edit_question', question_id=question.id) }}" class="btn btn-primary btn-sm m-1">Edit question</a>
+                                        <a href="{{ url_for('questions.delete_question', question_id=question.id) }}" class="btn btn-danger btn-sm m-1">Delete question</a>               
+                                </div>
+                                <hr>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endif %}
+            </div> 
+        </div>
+        <div>
+            <span>Author:<a class="mr-2" href="#"> {{ quiz.author.username }}</a></span>
+            {% if quiz.questions|length > 0 %}
+                <a href="{{ url_for('games.new_game', quiz_id=quiz.id) }}" class="btn btn-primary btn-sm m-1">Play</a>
+            {% else %}
+                <p>Ten quiz nie ma jeszcze pytań</p>
+            {% endif %}
+            {% if quiz.author == current_user %}
+                <a href="{{ url_for('questions.new_question', quiz_id=quiz.id) }}" class="btn btn-secondary btn-sm m-1">Add question</a>
+                <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteQuiz">Delete quiz</button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="modal fade" id="deleteQuiz" tabindex="-1" role="dialog" aria-labelledby="deleteQuizLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteQuizLabel">Delete quiz</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the quiz?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="{{ url_for('quizzes.delete_quiz', id=quiz.id) }}" method="POST">
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock content %}
