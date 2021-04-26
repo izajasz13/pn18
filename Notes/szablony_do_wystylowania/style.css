@@ -1,0 +1,140 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.navbar .link-list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0 30px;
+    overflow: hidden;
+    background-color: #333;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.navbar .link{
+    color: white;
+    margin: 0 10px;
+}
+.navbar .home-link{
+    color: pink;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-right: auto;
+}
+.note-title{
+    font-weight: bold;
+    font-size: 2em;
+}
+.note-content{
+    font-family: 'Reenie Beanie';
+}
+.notes-box, .note-card{
+    list-style:none;
+}
+.notes-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.notes-box .note-card a{
+    text-decoration:none;
+    color:#000;
+    background:#ffc;
+    display:block;
+    height:15em;
+    width:15em;
+    padding:1em;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    transform: rotate(-6deg);
+    transition: transform .15s linear;
+}
+
+.notes-box .note-card:nth-child(even) a{
+    transform:rotate(4deg);
+    position:relative;
+    top:5px;
+    background:#cfc;
+}
+.notes-box .note-card:nth-child(3n) a{
+    transform:rotate(-3deg);
+    position:relative;
+    top:-5px;
+    background:#ccf;
+}
+.notes-box .note-card:nth-child(5n) a{
+    transform:rotate(5deg);
+    position:relative;
+    top:-10px;
+}
+
+.notes-box .note-card a:hover{
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    transform: scale(1.25);
+    position:relative;
+    z-index:5;
+}
+
+.notes-box .note-card{
+    margin:1em;
+}
+
+form{
+    width: 100%;
+    height: 100%;
+    padding: 50px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+form input, form textarea{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: 15px;
+}
+form label{
+    margin: 30px 10px 10px 10px;
+    align-self: flex-start;
+}
+.title{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+}
+.message{
+    min-height: 150px;;
+}
+.button-box{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.button{
+    width: initial;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    padding: 15px;
+    margin: 20px 0 0 20px;
+    cursor: pointer;
+}
+.delete-button{
+    background-color: red;
+    color: white;
+}
+.submit-button{
+    background-color: blue;
+    color: white;
+}
