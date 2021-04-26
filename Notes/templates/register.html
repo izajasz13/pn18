@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form action="/" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }}
+    {{ form.username(class_="username") }}
+    {{form.password.label}}
+    {{form.password(class_="password")}}
+    {{form.confirm_password.label}}
+    {{form.confirm_password(class="confirm-password")}}
+    <div class="button-box">
+        {{form.submit(class_="submit-button button")}}
+    </div>
+</form>
+{% endblock content %}

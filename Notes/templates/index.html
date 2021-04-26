@@ -1,12 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes app</title>
-</head>
-<body>
-    <h1>Hello world!</h1>
-</body>
-</html>
+{% extends 'layout.html'%}
+{% block content %}
+<ul class="notes-box">
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #1</h2>
+        <p class="note-content">Text Content #1</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #2</h2>
+        <p class="note-content">Text Content #2</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #3</h2>
+        <p class="note-content">Text Content #3</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #4</h2>
+        <p class="note-content">Text Content #4</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #5</h2>
+        <p class="note-content">Text Content #5</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #6</h2>
+        <p class="note-content">Text Content #6</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #7</h2>
+        <p class="note-content">Text Content #7</p>
+      </a>
+    </li>
+    <li class="note-card">
+      <a href="#">
+        <h2 class="note-title">Title #8</h2>
+        <p class="note-content">Text Content #8</p>
+      </a>
+    </li>
+</ul>
+{% endblock content %}
