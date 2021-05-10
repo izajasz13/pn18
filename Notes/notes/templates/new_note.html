@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="contianer">
+    <form action="">
+        {{form.hidden_tag()}}
+        {{form.title.label}}
+        {{form.title(class_="title")}}
+        {{form.content.label}}
+        {{form.content(class_="message")}}
+        <div class="button-box">
+            {{form.submit(class_="submit-button button")}}
+        </div>
+    </form>
+</div>
+{% endblock content %}
